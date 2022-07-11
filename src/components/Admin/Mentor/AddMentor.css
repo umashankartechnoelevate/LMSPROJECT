@@ -1,0 +1,11 @@
+.AddMentorMain{
+
+    margin-top: -840px;
+    margin-left: 120px;
+    width:90%;
+}
+.mentortable{
+    /* display: block; */
+    overflow: auto;
+    word-break: break-all;
+}

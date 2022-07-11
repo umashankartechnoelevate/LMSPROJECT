@@ -1,0 +1,20 @@
+#Approve:hover{
+    background-color: green;
+    color:white !important;
+
+}
+
+#Reject:hover{
+    background-color: red;
+    color:white !important;
+}
+.Requestmain{
+    margin-top: -840px;
+    margin-left: 120px;
+    width:90%;
+}
+.batchsearchbaricon{
+    position: absolute;
+    top: 150px;
+    left: 1410px;
+}

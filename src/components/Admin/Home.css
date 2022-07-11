@@ -1,0 +1,56 @@
+#components-layout-demo-top-side-2 .logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .ant-row-rtl #components-layout-demo-top-side-2 .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
+  }
+  
+  .site-layout-background {
+    background: #fff;
+    /* background-color: #0000000A; */
+  }
+
+  .try{
+    color: red;
+    /* justify-content:space-around ; */
+  }
+
+  .searchbar{
+    height:50px;
+    border: none;
+    background-color:#F4F5F8;
+    margin: 10px auto;
+    padding:0px 80px;
+    border-radius: 5px;
+  }
+  .logoutbtn{
+    color: #075575;
+    border: 1px solid #075575;
+    font-weight: bold;
+  }
+
+  .searchbaricon{
+    position:absolute;
+    top:25px;
+    left:580px;
+  }
+  .batchsearchbaricon{
+    position:absolute;
+    top: 155px;
+    left:1270px;
+  }
+/* #content{
+  margin-top: 100px;
+    margin-left: 100px;
+    width:60%;
+} */
+.sidebarname{
+  color:#075575;
+}
+

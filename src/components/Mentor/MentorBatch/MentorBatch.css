@@ -1,0 +1,23 @@
+#AddMentormain {
+  width: 90%;
+  margin-left: 150px;
+  margin-top: -780px;
+  /* height:500px; */
+}
+.AttendanceButton {
+  border: none;
+  background-color: white;
+  margin-left: 20px;
+  color: #086288;
+  font-weight: bold;
+}
+.AttendanceButton:hover {
+  background-color: #086288;
+  transition: all 2s;
+  color: white;
+}
+.ProfileImage {
+  border-radius: 100%;
+}
+
+
