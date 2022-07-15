@@ -13,13 +13,17 @@ import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 
-function EmployeeList() {
+
+function EmployeeList({setadminorbatch,setlineChart,setempList}) {
   // state to add mock
   const [showAddMock, setshowAddMock] = useState(false);
+
   // state to add mockrating
   const [showAddMockRating, setshowAddMockRating] = useState(false);
+
   //state to store mock data
   const [MockData, setMockData] = useState({});
+
   // state to add Reason to change status
   const [showReason, setshowReason] = useState(false);
 
@@ -57,6 +61,12 @@ function EmployeeList() {
   let submitReason = () => {
     setshowReason(false);
   };
+
+  let reasonToChange=()=>{
+    setshowReason(true);
+  }
+
+  console.log("this is EmployeeList page called after navigation");
   const content = (
     <div>
       <table>
@@ -83,9 +93,16 @@ function EmployeeList() {
       </table>
     </div>
   );
+
+  let ToLineChart=()=>{
+    setlineChart(true)
+    setempList(false)
+    setadminorbatch(false)
+  }
+
   return (
-    <div>
-      <div id="AddEmployeemain">
+    <div >
+      <div className="AddEmployeemain">
         <div className="d-flex justify-content-start">
           <p className="fw-bold" style={{ color: "#FAA81D" }}>
             Employee List (Batch ID)
@@ -109,6 +126,8 @@ function EmployeeList() {
             type="text"
             placeholder="Search"
           />
+
+          {/* this is for Download button dropdown list started */}
           <div className=" dropdown downloadDropdown ms-2">
             <button
               style={{ backgroundColor: "#0000000A" }}
@@ -138,8 +157,11 @@ function EmployeeList() {
               </li>
             </ul>
           </div>
+          {/* this is for Download button dropdown list ended */}
+
+          {/* this is create mock Button started */}
           <button
-            className="btn text-white batchsearchbar"
+            className="btn  batchsearchbar"
             style={{
               backgroundColor: "#FAA81D",
               border: "none",
@@ -153,10 +175,11 @@ function EmployeeList() {
           </button>
         </div>
       </div>
-
-      <table className="table" style={{ marginLeft: "100px" }}>
+      {/* //  this is create mock Button ended */}
+      <div className="row table-responsive mt-2">
+      <table className="table" style={{width:"100%"}}>
         <thead>
-          <tr>
+          <tr style={{backgroundColor:"#E9EEF7"}}>
             <th>⬜</th>
             <th>No</th>
             <th>Employee ID</th>
@@ -168,7 +191,7 @@ function EmployeeList() {
             <th>Batch Strength</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className=" border-0 ">
           <tr>
             <td>
               <input type="checkbox" />
@@ -192,37 +215,33 @@ function EmployeeList() {
               </Popover>
             </td>
             <td>15/23</td>
-            <td>             
-                <Box sx={{ minWidth:50 }}>
-                  <FormControl>
-                    <NativeSelect>
-                      <option
+            <td>
+              <Box sx={{ minWidth: 50 }}>
+                <FormControl>
+                  <NativeSelect>
+                    <option
                       type="submit"
-                      onClick={() => {
-                        setshowReason(true);
-                      }}
+                      onClick={reasonToChange}
                       className="mb-2"
                     >
                       Absconded
                     </option>
                     <option
                       type="submit"
-                      onClick={() => {
-                        setshowReason(true);
-                      }}
+                      onClick={reasonToChange}
                       className="mb-2"
                     >
                       Terminated
                     </option>
                     <option
                       type="click"
-                      onClick={() => {
-                        setshowReason(true);
-                      }}
-                    >Active</option>
-                    </NativeSelect>
-                  </FormControl>
-                </Box>
+                      onClick={reasonToChange}
+                    >
+                      Active
+                    </option>
+                  </NativeSelect>
+                </FormControl>
+              </Box>
             </td>
             <td>
               <button
@@ -233,14 +252,14 @@ function EmployeeList() {
               >
                 Give Rating
               </button>
-              <button className="border-0 bg-white">
+              <button type="button" onClick={ToLineChart} className="border-0 bg-white">
                 <i className="fas fa-chevron-right ms-5"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-
+      </div>
       {/* model for adding mock */}
       <Modal
         show={showAddMock}
@@ -350,7 +369,7 @@ function EmployeeList() {
       >
         <Modal.Header closeButton onClick={closeshowReason}>
           <Modal.Title
-            style={{ color: "#086288" }}
+            style={{ color: "#086288"}}
             id="contained-modal-title-vcenter"
           >
             Reason to change Status

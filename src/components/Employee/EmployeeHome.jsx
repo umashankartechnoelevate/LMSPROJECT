@@ -105,6 +105,7 @@ function EmployeeHome() {
                 </Link>
               </div>
             </nav>
+           
           </Sider>
           <Layout
             style={{
@@ -130,7 +131,8 @@ function EmployeeHome() {
                 margin: 0,
                 minHeight: 280,
               }}
-            ></Content>
+            >
+            </Content>
           </Layout>
         </Layout>
       </Layout>

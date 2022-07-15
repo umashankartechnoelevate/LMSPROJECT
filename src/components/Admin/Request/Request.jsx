@@ -28,19 +28,19 @@ const [requestDAta, setrequestDAta] = useState({
   return (
     <div>
       <div className="Requestmain">
-        <div className="d-flex justify-content-start">
-          <p className="fw-bold" style={{ color: "#FAA81D" }}>
+        <div className="col col-lg-12 col-md-12 col-sm-12 d-flex ">
+         <div className="col col-md-6 col-sm-12 text-start " style={{marginLeft:"130px"}}> <p className="fw-bold" style={{ color: "#FAA81D" }}>
             Request List
-          </p>
-          <img
+          </p></div>
+          {/* <img
             className="batchsearchbaricon"
             height="20px"
             src="./Homepage/search.png"
             alt=""
-          />
-          <input
+          /> */}
+          <div className="col"><input
             style={{
-              marginLeft: "1170px",
+              // marginLeft: "1170px",
               backgroundColor: "#F4F5F8",
               border: "none",
               height: "40px",
@@ -50,8 +50,9 @@ const [requestDAta, setrequestDAta] = useState({
             className="w-25"
             type="text"
             placeholder="Search"
-          />
+          /></div>
         </div>
+        <div className="col col-lg-12 col-md-8 col-sm-4 table table-responsive-sm row" style={{marginLeft:"150px"}}>
         <table className=" mt-3 table table-hover table-borderless">
           <thead>
             <tr  style={{ backgroundColor: "#E9EEF7" }}>
@@ -86,6 +87,7 @@ const [requestDAta, setrequestDAta] = useState({
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
 
       <Modal

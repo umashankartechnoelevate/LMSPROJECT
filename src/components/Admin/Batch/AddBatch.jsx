@@ -140,8 +140,8 @@ function AddBatch() {
     <div className="container-fluid mb-2">
       {/* header part started */}
       <div className="row ">
-      <div className="" id="Addbatchmain">
-        <div className="d-md-flex d-sm-flex text-start justify-content-md-start justify-content-sm-start">
+      <div  id="Addbatchmain">
+        <div className=" col col-lg-12 col-md-8 col-sm-1 d-md-flex d-sm-flex text-start justify-content-md-start justify-content-sm-start">
           <div className="col col-md-4 col-sm-4  "><p className="fw-bold" style={{ color: "#FAA81D" }}>
             Batch List
           </p></div>
@@ -151,9 +151,10 @@ function AddBatch() {
             src="./Homepage/search.png"
             alt=""
           /></div> */}
-          <div className="col col-md-4 col-sm-4"><input
+          <div className="col col-md-4 col-sm-4">
+            <input
             style={{
-              // marginLeft: "1050px",
+              marginLeft: "150px",
               backgroundColor: "#F4F5F8",
               border: "none",
               height: "40px",
@@ -164,7 +165,8 @@ function AddBatch() {
             type="text"
             placeholder="Search"
           /></div>
-          <div className="col col-md-4 col-sm-4"><button
+          <div className="col col-md-4 col-sm-4">
+            <button
             onClick={() => {
               setshowAddBatch(true);
             }}
@@ -172,7 +174,7 @@ function AddBatch() {
             style={{
               backgroundColor: "#FAA81D",
               border: "none",
-              marginLeft: "20px",
+              marginLeft: "250px",
             }}
           >
             + New Batch
@@ -180,10 +182,10 @@ function AddBatch() {
         </div>
         {/* Header part ended */}
         {/* AddBatch Table started */}
-        <div className="table-responsive-sm">
+        <div className="table-responsive-sm mt-2">
         <table className="table table-hover table-borderless">
           <thead>
-            <tr id="tablerow" style={{ backgroundColor: "#E9EEF7", width: "100%" }}>
+            <tr id="tablerow" style={{ backgroundColor: "#E9EEF7",}}>
               <th scope="col">⬜</th>
               <th scope="col">No.</th>
               <th scope="col">Batch ID</th>

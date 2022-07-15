@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import "antd/dist/antd.css";
 import "./Home.css";
 import { Breadcrumb, Layout, Menu } from "antd";
-// import AddBatch from "./Batch/AddBatch";
-// import AddMentor from "./Mentor/AddMentor";
-// import Request from "./Request/Request";
-// import SideNav from './SideNav';
-import { Link } from "react-router-dom";
+import {Link, Outlet,useNavigate } from "react-router-dom";
 const { Header, Content, Sider } = Layout;
 
 function Home() {
-  return (
+
+  let navigatetoLogin=useNavigate()
+
+  return (  
     <div>
       <Layout className="col col-md-12 col-sm-12">
         <Header className="header bg-white">
@@ -31,15 +30,15 @@ function Home() {
               placeholder="Search Mentor / Employee"
             />
             <div>
-              <button className=" logoutbtn btn ">Logout</button>
+              <button type="button" onClick={()=>{navigatetoLogin('/')}} className=" logoutbtn btn ">Logout</button>
             </div>
           </div>
         </Header>
         <Layout>
           <Sider width={90} className="site-layout-background mt-1">
             <nav>
-              <div className=" groupdiv mt-5 ">
-                <Link className="nav-link" to={"/AddBatch"}>
+              <div className="groupdiv mt-5 ">
+                <Link className="nav-link" to={"AddBatch"}>
                   <img
                     className="groupimage"
                     src="./Homepage/group2x2.png"
@@ -50,7 +49,7 @@ function Home() {
                 </Link>
               </div>
               <div className="mt-5">
-                <Link className="nav-link" to={"/AddMentor"}>
+                <Link className="nav-link" to={"AddMentor"}>
                   <img
                     height="50px"
                     className="groupimage"
@@ -61,7 +60,7 @@ function Home() {
                 </Link>
               </div>
               <div className="mt-5">
-                <Link className="nav-link" to={"/Request"}>
+                <Link className="nav-link" to={"Request"}>
                   <img
                     height="50px"
                     src="./Homepage/request2x.png"
@@ -71,6 +70,7 @@ function Home() {
                 </Link>
               </div>
             </nav>
+            
           </Sider>
           <Layout
             style={{
@@ -84,11 +84,16 @@ function Home() {
                 margin: "16px 0",
               }}
             >
-
               <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item ><Link to="/AddBatch">Batch</Link></Breadcrumb.Item>
-              <Breadcrumb.Item ><Link to="/AddMentor" >Mentor</Link></Breadcrumb.Item>
-              <Breadcrumb.Item ><Link to="/Request">Request</Link></Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to="AddBatch">Batch</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to="AddMentor">Mentor</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to="Request">Request</Link>
+              </Breadcrumb.Item>
             </Breadcrumb>
             <Content
               className="site-layout-background"
@@ -101,8 +106,7 @@ function Home() {
           </Layout>
         </Layout>
       </Layout>
-
-      <h1 className="try">Umashankar</h1>
+      <Outlet/> 
     </div>
   );
 }

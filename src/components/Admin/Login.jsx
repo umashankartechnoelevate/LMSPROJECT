@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 // import { Container, Row, Col, Image } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 function Login() {
-
+  // for Admin module
   const [loginData, setLoginData] = useState({
-    userID: "",
-    password: "",
+    adminUserID: "",
+    adminPassword: "",
   });
+
+  // for Mentor module
+  // const [mentorLoginData, setmentorLoginData] = useState({
+  //   mentorUserID: "",
+  //   mentorPassword: "",
+  // });
+
+  let navigate = useNavigate();
 
   let LoginDetails = (e) => {
     setLoginData({
@@ -27,24 +35,30 @@ function Login() {
   const [userPassVal, setuserPassVal] = useState("");
 
   let userIDValidate = () => {
-    if (loginData.userID) {
-      let regex = /^[a-zA-Z]/g;
-      if (regex.test(loginData.userID)) {
+    if (loginData.adminUserID) {
+      let regex = /^[a-zA-Z.user]/g;
+      if (regex.test(loginData.adminUserID)) {
         setuserIDVal("");
         return true;
       } else {
         setuserIDVal("* please enter correct userID");
       }
-    } else {
-      setuserIDVal("* please enter userID");
+    // } else if (loginData.adminUserID) {
+    //   let regex = /^[a-zA-Z.mentor]/g;
+    //   if (regex.test(loginData.adminUserID)) {
+    //     setmentorIDVal("");
+    //     return true;
+    // }else{
+    //   setuserIDVal("* please enter userID");
     }
   };
 
   let passwordValidate = () => {
-    if (loginData.password) {
+    if (loginData.adminPassword) {
       let regex = /^[A-Z][a-z0-9]/g;
-      if (regex.test(loginData.password)) {
+      if (regex.test(loginData.adminPassword)) {
         setuserPassVal("");
+        return true;
       } else {
         setuserPassVal("* please enter correct password");
       }
@@ -52,17 +66,37 @@ function Login() {
       setuserPassVal("* enter your password");
     }
   };
-//validation ended
 
+
+  // const [mentorIDVal, setmentorIDVal] = useState("");
+
+  // let mentorIDValidate = () => {
+  //   if (loginData.adminUserID) {
+  //     let regex = /^[a-zA-Z.mentor]/g;
+  //     if (regex.test(loginData.adminUserID)) {
+  //       setmentorIDVal("");
+  //       return true;
+  //     } else {
+  //       setmentorIDVal("* please enter correct userID");
+  //     }
+  //   } else {
+  //     setmentorIDVal("* please enter userID");
+  //   }
+  // };
+
+  //validation ended
   let LoginDone = () => {
     userIDValidate();
     passwordValidate();
+    // mentorIDValidate();
     localStorage.setItem("LoginData", JSON.stringify(loginData));
-    // setLoginData({
-    // userID: "",
-    // password: ""})
-    let navigate=useNavigate()
-      navigate('/Home')
+
+    // if validation true then only navigate to other page
+    if (userIDValidate() && passwordValidate()) {
+      navigate("/Home");
+    } else {
+      navigate("/MentorHome");
+    }
   };
 
   return (
@@ -101,8 +135,8 @@ function Login() {
                     placeholder="Enter your login ID"
                     className="employeeinput mb-1 text-black "
                     type="text"
-                    name="userID"
-                    value={loginData.userID}
+                    name="adminUserID"
+                    value={loginData.adminUserID}
                     onChange={(e) => {
                       LoginDetails(e);
                     }}
@@ -110,23 +144,27 @@ function Login() {
                   {userIDVal && (
                     <div className="text-danger mb-1 fs-5">{userIDVal}</div>
                   )}
+                  {/* {mentorIDVal && (
+                    <div className="text-danger mb-1 fs-5">{mentorIDVal}</div>
+                  )} */}
+
                   <br />
                   <div className="m-0 justify-content-start">
                     <label
-                      className="text-white"
+                      className="text-white justify-content-start"
                       htmlFor=""
                       placeholder="Enter Password"
                     >
                       Password
                     </label>
-                  </div>
+                  </div> +
 
                   <input
                     placeholder="Enter your Password"
                     className="employeeinput text-black"
                     type="text"
-                    name="password"
-                    value={loginData.password}
+                    name="adminPassword"
+                    value={loginData.adminPassword}
                     onChange={(e) => {
                       LoginDetails(e);
                     }}
@@ -141,7 +179,6 @@ function Login() {
                     <button className="secondbtn text-white">CANCEL</button>
                   </div>
                   <div className="horline"></div>
-
                   <div className="d-flex mt-4">
                     <p className="text-white ">Copyright 2018 Aleercio.com</p>
                     <p className="text-white ms-5">

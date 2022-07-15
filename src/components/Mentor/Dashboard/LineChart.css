@@ -1,0 +1,11 @@
+canvas {
+    box-sizing: border-box;
+    display: block;
+    height: 300px;
+    width: 1000px;
+}
+#DashboardChart{
+    /* margin-top: -650px; */
+    width: 85%;
+    margin-left: 120px;
+}

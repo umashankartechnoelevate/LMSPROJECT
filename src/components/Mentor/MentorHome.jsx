@@ -1,18 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 //for login dropdown layoiut
-import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
+import MentorBatch from "./MentorBatch/MentorBatch";
+import EmployeeList from './MentorBatch/EmployeeList';
+import MentorDashboard from "./Dashboard/MentorDashboard";
+import Graphs from "./Dashboard/Graphs";
 const { Header, Content, Sider } = Layout;
 
+
 function MentorHome() {
+
+const [adminorbatch, setadminorbatch] = useState(false)
+const [empList, setempList] = useState(false)
+const [lineChart, setlineChart] = useState(false)
+const [graphs, setgraphs] = useState(false)
+
+let navigationToLogin=useNavigate()
+
   // dropdown
   const menu = (
     <Menu
       items={[
         {
-          label: <a style={{transform:"scale(1.5 1)"}} href="">Profile</a>,
+          label: <a href="">Profile</a>,
           key: "0",
         },
         {
@@ -20,8 +32,8 @@ function MentorHome() {
           key: "1",
         },
         {
-          label: <a href="">Logout</a>,
-          key: "1",
+          label: <a onClick={()=>{navigationToLogin('/')}}>Logout</a>,
+          key: "2",
         },
       ]}/>);
 
@@ -52,7 +64,7 @@ function MentorHome() {
               <Dropdown overlay={menu} trigger={["click"]}>
                 <a onClick={(e) => e.preventDefault()}>
                   <Space>
-                  <button className=" logoutbtn btn d-flex border-0">
+                  <button className="logoutbtn btn d-flex border-0">
                 <img
                   className="me-2 ProfileImage img-fluid "
                   data-bs-toggle="dropdown"
@@ -89,32 +101,41 @@ function MentorHome() {
             </div>
           </div>
         </Header>
-
         <Layout>
-          <Sider width={90} className="site-layout-background">
+          <Sider width={90} className="site-layout-background mt-1">
             <Menu
               mode="inline"
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
               style={{
-                // height: '100%',
                 borderRight: 0,
               }}
             />
             <nav>
-              <div className=" groupdiv mt-5 ">
-                <Link className="nav-link" to={"/MentorDashboard"}>
+              <div className=" groupdiv mt-5">
+                <button onClick={()=>{
+                    setgraphs(true)
+                    setadminorbatch(false)
+                    setempList(false)
+                    setlineChart(false)
+
+                }} className=" border-0 bg-white">
                   <img
-                    className="groupimage"
+                    className="groupimage "
                     src="./Mentor/Dashboard.png"
                     alt="group"
                     height="50px"
                   />
                   <p className="sidebarname">Dashboard</p>
-                </Link>
+                </button>
               </div>
               <div className="mt-2">
-                <Link className="nav-link" to={"/MentorBatch"}>
+                <button onClick={()=>{
+                  setadminorbatch(true)
+                  setempList(false)
+                  setlineChart(false)
+                  setgraphs(false)
+                  }} className="nav-link border-0 bg-white ">
                   <img
                     height="50px"
                     className="groupimage"
@@ -122,7 +143,7 @@ function MentorHome() {
                     alt="mentor"
                   />
                   <p className="sidebarname">Batch</p>
-                </Link>
+                </button>
               </div>
             </nav>
           </Sider>
@@ -148,10 +169,17 @@ function MentorHome() {
                 margin: 0,
                 minHeight: 280,
               }}
-            ></Content>
+            >
+               {adminorbatch ? <MentorBatch empList={empList} setempList={setempList} setadminorbatch={setadminorbatch}/>:""}
+               {empList ? <EmployeeList empList={empList} setempList={setempList} adminorbatch={adminorbatch} setadminorbatch={setadminorbatch} setlineChart={setlineChart} /> :""}
+               {lineChart?<MentorDashboard/>:""}
+               {graphs?<Graphs/>:""}
+
+            </Content>
           </Layout>
         </Layout>
       </Layout>
+      <Outlet/>
     </div>
   );
 }

@@ -1,13 +1,7 @@
-#AddEmployeemain{
-    width:95%;
-    margin-top: -790px;
-    margin-left:150px;
+.AddEmployeemain{
+    width:100%;
 }
 .downloadDropdown:hover{
     background-color: #A1A1A3;
     height: 38px;
-    
-}
-.downloadDropdown{
-        
 }

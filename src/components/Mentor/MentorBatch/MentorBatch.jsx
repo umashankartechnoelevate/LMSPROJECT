@@ -1,21 +1,16 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 // import EmployeeList from "./EmployeeList";
 import "./MentorBatch.css";
 import AddAttendance from "./AddAttendance";
 import { Button as BTN, Popover } from "antd";
+import EmployeeList from "./EmployeeList";
 
-
-function MentorBatch() {
+function MentorBatch({setempList,setlineChart,setadminorbatch}) {
+  
   const [mentorBatchData, setmentorBatchData] = useState([]);
   const [showAttendance, setshowAttendance] = useState(false);
 
-
-  let navigate = useNavigate();
-
-  let navEmployeeList = () => {
-    navigate("/EmployeeList");
-  };
 
   let AttendanceList = () => {
     setshowAttendance(true);
@@ -53,6 +48,12 @@ function MentorBatch() {
     </div>
   );
 
+  let ToEmployeeList=()=>{
+    setempList(true) 
+    setadminorbatch(false)
+    setlineChart(false)
+  }
+
   return (
     <div>
       <div id="AddMentormain">
@@ -81,9 +82,10 @@ function MentorBatch() {
           />
         </div>
       </div>
-      <table className="table" style={{ marginLeft: "100px" }}>
+      <div className="row table-responsive mt-2">
+      <table className="table" style={{width:"100%"}}>
         <thead>
-          <tr>
+          <tr style={{backgroundColor:"#E9EEF7"}}>
             <th>⬜</th>
             <th>No</th>
             <th>Batch ID</th>
@@ -95,7 +97,7 @@ function MentorBatch() {
             <th>Batch Strength</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="border-0">
           <tr>
             <td>
               <input type="checkbox" />
@@ -121,14 +123,16 @@ function MentorBatch() {
               <button onClick={AttendanceList} className="AttendanceButton ">
                 Attendance
               </button>
-              <button onClick={navEmployeeList} className="border-0 bg-white">
+             <button onClick={()=>{ToEmployeeList()}} className="border-0">
                 <i className="fas fa-chevron-right"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-
+      <Outlet/>
+      </div>
+      
       <AddAttendance
         showAttendance={showAttendance}
         closeAttendance={closeAttendance}
